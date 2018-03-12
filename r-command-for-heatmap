@@ -1,0 +1,4 @@
+heat1 <- read.csv("pairs/with/frequency/ranks/file",header=FALSE,sep=" ")
+heat1$V3 <- heat1$V3 - Mode(heat1$V3)
+heat1$V3[heat1$V3 < 1 ] = 1
+ggplot(data=heat1, aes(x=V1, y=V2, fill=V3)) + geom_tile(colour = "white") + scale_fill_gradient( trans = 'log10', low = "white",   high = "darkblue", name="co-occurrences\n") + labs(x="word percentile", y="context word percenctile") + theme(legend.position="top", panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(), panel.border=element_rect(size=1, fill=NA))
